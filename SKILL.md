@@ -106,6 +106,8 @@ Requirements:
 
 - use one shared style prefix across the whole project
 - make each prompt directly usable in Nana Banana Pro or another image model
+- for character assets, explicitly name the character in each prompt (do not use generic labels like "a young warrior" without the character name)
+- when available, include both Chinese name and official English name in character prompts (example: `Nie Feng (聂风)`)
 - preserve recurring identity markers for characters
 - use distinct color schemes and visual markers for each character to ensure recognition
 - keep the list organized with unique IDs suitable for copy-pasting into image generators
@@ -223,6 +225,7 @@ Only use a single combined Markdown file when the user explicitly asks for inlin
 - If the user provides only a theme, guide them through setup briefly and continue with reasonable defaults.
 - If any character identity, source, or canonical setting is unclear, search the web first, summarize the likely matches with sources, and ask the user to confirm before continuing script, asset, or storyboard generation.
 - For character names, run a separate web search for the official English name (not only Chinese aliases or transliterations); do not invent or infer an English name without a source. If no reliable source is found, mark it as unknown and ask the user to confirm.
+- In Nana Banana character prompts, always call out the character by name explicitly; do not replace named characters with vague role words.
 - Keep IDs stable once assigned.
 - Make references explicit whenever using `@图片X`, `@视频X`, or `@音频X`.
 - Use explicit names instead of ambiguous pronouns when continuity matters.
@@ -238,6 +241,7 @@ Before finalizing:
 - validate camera movements are feasible and logically sequenced
 - ensure all recurring characters, scenes, props, wardrobe, and injuries remain consistent
 - ensure one shared style prefix is used across reusable asset prompts
+- ensure every Nana Banana character prompt explicitly includes the character name (and official English name when available)
 - ensure the Nana Banana asset prompts and Seedance prompt blocks can be copied into the production workflow with minimal cleanup
 
 ## Common Pitfalls To Avoid
