@@ -1,98 +1,146 @@
 ---
 name: seedance-storyboard-generator
-description: "Professional AI video script and storyboard generator for Seedance 2.0 platform. Use when user asks to: (1) convert articles or stories into video scripts, (2) generate Seedance 2.0 storyboard prompts, (3) plan multi-episode AI video series, or (4) create character, scene, and prop prompts for image models like Nana Banana Pro."
+description: "Seedance 2.0 剧本与分镜技能。用于把主题、小说、故事、文章改成多集视频方案，覆盖帖子里的工作流：构思主题、写剧本、生成素材描述、生图衔接、写分镜脚本、逐集生成视频；也支持单独生成 Seedance 2.0 分镜提示词、续拍提示词、视频编辑提示词、角色场景道具素材提示词。"
 ---
 
 # Seedance Storyboard Generator
 
-Expert AI script and storyboard generation system for creating professional AI video series on Seedance 2.0 platform.
+Follow the workflow demonstrated in the Linux.do post and the upstream repository:
 
-## Workflow
+`构思主题 -> 写剧本 -> 生成素材描述 -> 生图 -> 写分镜脚本 -> 逐集生成视频`
 
-Follow this sequential process to convert source material into production-ready video scripts:
+Read [references/故事转视频脚本-转换工具.md](references/故事转视频脚本-转换工具.md) when the source material is still rough and must be converted into a filmable story structure first.
 
-### 1. Analyze Input
+Read [references/seedance-manual.md](references/seedance-manual.md) when you need exact Seedance 2.0 prompt templates, platform limits, camera keywords, multimodal reference syntax, video extension, or edit patterns.
 
-**Determine input type:**
-- **Full text**: Complete novel/article requiring adaptation and episode segmentation
-- **Outline**: Brief story concept requiring full script development
+## Default Behavior
 
-**Extract core elements:**
-- Protagonist(s) and key characters
-- Central conflict and narrative arc
-- Setting/world-building elements
-- Key plot points and emotional beats
+When the user gives a theme, story, article, novel excerpt, or asks for a short-drama workflow, default to the full guided flow below.
 
-Ask clarifying questions only if input is ambiguous or incomplete enough to materially change the output.
+The skill should behave like a step-by-step production assistant:
 
-### 2. Confirm Production Parameters
+1. help the user confirm the project setup
+2. write the script
+3. generate the asset prompt list
+4. tell the user to generate images with Nana Banana Pro or another image model
+5. write per-episode Seedance storyboard scripts
+6. explain how to chain episodes with video extension
 
-**Essential questions to ask:**
+If the user asks for only one narrow task, such as a single storyboard prompt, a continuation prompt, a video edit prompt, or only an asset list, skip unrelated steps and do only that part.
 
-1. **Visual Style**: What visual style? (写实/动画/水墨/科幻/复古/电影感/其他)
-2. **Duration**: Total runtime? (Standard: 20 episodes × 15s each ≈ 5 minutes)
-3. **Target Platform**: Aspect ratio? (16:9横屏 / 9:16竖屏 / 2.35:1电影宽屏)
-4. **Tone**: Overall emotional tone? (史诗/温馨/悬疑/欢快/忧伤等)
+## Guided Workflow
 
-Document these parameters for consistent application throughout.
+### 1. Intake And Configuration
 
-### 3. Generate Four-Act Script Structure
+Treat this as the default first step when the user says something like `seedance 风云中聂风小时候的故事` or provides only a rough topic.
 
-**Structure:**
-- **Act 1 (起)**: Episodes 1-5 - Introduction and inciting incident
-- **Act 2 (承)**: Episodes 6-10 - Rising action and complications
-- **Act 3 (转)**: Episodes 11-15 - Climax and confrontation
-- **Act 4 (合)**: Episodes 16-20 - Resolution and conclusion
+Collect or infer:
 
-**For each episode include:**
-- Episode number and title
-- Duration (standard: 15 seconds)
-- Emotional tone/mood
-- Key plot points
-- Beginning/ending frame description (for continuity)
+- source material or one-sentence story premise
+- visual style
+- aspect ratio
+- target duration or episode count
+- tone
+- whether the user already has images, videos, or audio references
 
-**Output format:** Markdown document with clear section headers.
+Ask only for missing parameters that materially change the result. If reasonable defaults are obvious, state them once and continue instead of blocking.
 
-### 4. Create Asset Generation Plan
+Recommended defaults when the user gives only a theme:
 
-**Categorize and number all visual assets:**
+- language: Chinese
+- aspect ratio: `9:16`
+- duration: `15s` per episode
+- structure: multi-episode short drama
+- deliverables: script + asset list + storyboard package + chaining notes
+
+### 2. Script Development
+
+Convert the source material into a four-act script structure aligned with the repo workflow:
+
+- 起: episodes 1-5
+- 承: episodes 6-10
+- 转: episodes 11-15
+- 合: episodes 16-20
+
+For shorter series, preserve the same escalation pattern in fewer episodes.
+
+For each episode include:
+
+- episode number and title
+- duration
+- emotional tone
+- key plot points
+- beginning frame
+- ending frame
+
+If the source is still loose or literary, use [references/故事转视频脚本-转换工具.md](references/故事转视频脚本-转换工具.md) to first extract theme, conflict, character arc, scenes, and dramatic beats.
+
+### 3. Asset Planning
+
+Create reusable asset prompts before storyboard writing. This is the Nana Banana Pro prompt stage in the upstream workflow.
+
+Use the numbering scheme:
 
 | Category | Prefix | Example | Description |
 |----------|--------|---------|-------------|
-| Characters | C01-C99 | C01 叶青云·正面全身 | Multiple angles per character |
-| Scenes | S01-S99 | S01 青锋山废墟 | Key locations |
-| Props | P01-P99 | P01 青锋剑 | Important objects |
+| Characters | `C01-C99` | `C01 林冲·正面全身` | Character references and angles |
+| Scenes | `S01-S99` | `S01 沧州草料场·雪景` | Key locations and environments |
+| Props | `P01-P99` | `P01 长枪` | Important objects and wardrobe items |
 
-**Asset generation prompt format:**
-```
+Use the upstream prompt format for every reusable asset:
+
+```text
 ### [编号] — [名称]
 
 [Style prefix], [detailed visual description in English], [technical specs]
-
-**Style Prefix Examples:**
-- Chinese ink wash painting style mixed with anime cel-shading
-- Cinematic photorealistic style with dramatic lighting
-- 3D Pixar-style animation rendering
-- Sci-fi cyberpunk aesthetic with neon lighting
-
-**Character differentiation:** Use distinct color schemes and visual markers for each character to ensure recognition in the chosen art style.
 ```
 
-**Output format:** Organized list with unique IDs, suitable for copy-pasting into image generators.
+Style prefix examples:
 
-### 5. Generate Seedance 2.0 Storyboard Scripts
+- `Chinese ink wash painting style mixed with anime cel-shading`
+- `Cinematic photorealistic style with dramatic lighting`
+- `3D Pixar-style animation rendering`
+- `Sci-fi cyberpunk aesthetic with neon lighting`
 
-**For each episode, produce:**
+Requirements:
 
-**a. Asset Upload List**
-```
+- use one shared style prefix across the whole project
+- make each prompt directly usable in Nana Banana Pro or another image model
+- preserve recurring identity markers for characters
+- use distinct color schemes and visual markers for each character to ensure recognition
+- keep the list organized with unique IDs suitable for copy-pasting into image generators
+
+### 4. Image Generation Handoff
+
+The skill does not generate images itself. After producing the asset list, explicitly instruct the user to generate the referenced images with Nana Banana Pro or another image model before video production.
+
+Mention the practical handoff:
+
+- open `[标题]_素材清单.md`
+- generate the listed character, scene, and prop images
+- keep filenames or IDs stable so they can be mapped back into storyboard slots
+
+### 5. Storyboard Script Generation
+
+After the script and asset plan are ready, generate Seedance 2.0 storyboard files in the repo's production format.
+
+Each episode storyboard should contain:
+
+1. 素材上传清单
+2. Seedance Prompt
+3. 尾帧描述
+
+Use the upstream structure:
+
+```text
 图片1: C01 (角色参考)
 图片2: S03 (场景参考)
 图片3: P01 (道具参考)
 ```
 
-**b. Seedance Prompt (Time-axis format)**
-```
+Then write the Seedance prompt in time-axis format:
+
+```text
 [风格描述]，[画幅比例]，[整体氛围]
 
 0-3s画面：[镜头运动]，[场景建立]，[主体引入]
@@ -102,48 +150,90 @@ Document these parameters for consistent application throughout.
 12-15s画面：[镜头运动]，[结尾/落版]
 
 【声音】[配乐风格] + [音效] + [对白/旁白]
-
-【参考】@图片1 [用途]，@图片2 [用途]...
+【参考】@图片1 [用途]，@图片2 [用途]，@视频1 [用途]，@音频1 [用途]
 ```
 
-**c. Ending Frame Description**
-- Document the final frame content for next episode continuity
+And finish with a plain-language ending frame description for next-episode continuity.
 
-**Camera movement keywords:** 推镜头/拉镜头/摇镜头/移镜头/跟镜头/环绕镜头/升降镜头/希区柯克变焦/一镜到底/手持晃动
+Use camera movement keywords consistent with the upstream skill:
 
-**For episode chaining (Ep 2+):** Start prompt with `将@视频1延长15s` and upload previous episode as video reference.
+- 推镜头
+- 拉镜头
+- 摇镜头
+- 移镜头
+- 跟镜头
+- 环绕镜头
+- 升降镜头
+- 希区柯克变焦
+- 一镜到底
+- 手持晃动
+
+### 6. Episode Chaining
+
+Explain the chain-generation workflow exactly as a production note:
+
+- `E01` is generated as a new video
+- `E02` extends `E01` by uploading `E01` as `@视频1`
+- `E03` extends `E02`
+- continue the same pattern for later episodes
+
+When continuity matters, start the prompt with:
+
+```text
+将@视频1延长X秒
+```
+
+Then describe only the newly added segment and any transition needed from the previous ending frame.
+
+If the user specifically wants strict upstream behavior for chaining, default to `将@视频1延长15s` for standard 15-second episodes.
+
+## Narrow Task Modes
+
+If the user requests a specific subtask, switch to the corresponding mode instead of forcing the full drama workflow:
+
+- single storyboard or short prompt
+- asset prompt generation only
+- Seedance video extension
+- Seedance video edit or rewrite
+- product, travel, battle, voice, or template-driven prompts from the manual
+
+Use [references/seedance-manual.md](references/seedance-manual.md) for the correct template in these narrow modes.
 
 ## Output Files
 
-Generate these deliverable files:
+When the user wants production-ready files, use these names:
 
-1. **[Title]_剧本.md** - Complete four-act script with episode breakdown
-2. **[Title]_素材清单.md** - All character/scene/prop generation prompts
-3. **[Title]_E[XX]_分镜.md** - Individual episode storyboard scripts (or combined)
+1. `[标题]_剧本.md`
+2. `[标题]_素材清单.md`
+3. `[标题]_E[XX]_分镜.md`
+
+If multiple episodes are delivered in one Markdown file, say so explicitly.
+
+## Interaction Rules
+
+- Prefer Chinese output when the user or source material is Chinese.
+- If the user provides only a theme, guide them through setup briefly and continue with reasonable defaults.
+- Keep IDs stable once assigned.
+- Make references explicit whenever using `@图片X`, `@视频X`, or `@音频X`.
+- Use explicit names instead of ambiguous pronouns when continuity matters.
+- Keep prompts practical and production-ready rather than literary.
 
 ## Quality Assurance
 
-**Before finalizing:**
-- Verify all asset references (@图片X) have corresponding IDs in asset list
-- Check episode-to episode continuity (ending frame → opening frame)
-- Ensure time-axis coverage spans complete 15 seconds
-- Validate that camera movements are feasible and logically sequenced
+Before finalizing:
 
-## Reference Material
+- verify every `@图片X`, `@视频X`, and `@音频X` reference has a corresponding upload slot
+- check episode-to-episode continuity from ending frame to next opening frame
+- ensure the time axis covers the full requested duration
+- validate camera movements are feasible and logically sequenced
+- ensure all recurring characters, scenes, props, wardrobe, and injuries remain consistent
+- ensure one shared style prefix is used across reusable asset prompts
+- ensure the Nana Banana asset prompts and Seedance prompt blocks can be copied into the production workflow with minimal cleanup
 
-For detailed Seedance 2.0 prompt patterns, templates, and best practices, see [references/seedance-manual.md](references/seedance-manual.md).
+## Common Pitfalls To Avoid
 
-For long-form story adaptation worksheets and scene-conversion templates, see [references/故事转视频脚本-转换工具.md](references/故事转视频脚本-转换工具.md).
-
-Key reference sections:
-- Templates 1-16 for different video types (叙事/产品/角色/风景/战争/等)
-- Camera movement quick reference
-- Atmosphere keyword library
-- Multimodal reference syntax (@图片X, @视频X, @音频X)
-
-## Common Pitfalls to Avoid
-
-1. **Sensitive words**: Seedance may reject content with certain terms. Avoid common triggers or use alternative phrasing.
-2. **Over-complex prompts**: Long prompts (300+ words) may have inconsistent instruction following. Prefer clarity over verbosity.
-3. **Missing continuity**: Always document ending frames and verify next episode starts with matching scene.
-4. **Inconsistent style**: Apply same visual style prefix to all asset generation prompts.
+1. Do not force a full multi-episode workflow when the user only wants one prompt.
+2. Do not ask unnecessary setup questions when safe defaults are obvious.
+3. Do not generate asset IDs that are later changed or renumbered.
+4. Do not ignore Seedance reference limits or continuation mechanics.
+5. Do not output only literary summaries when the user needs executable production prompts.
