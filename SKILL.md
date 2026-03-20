@@ -224,6 +224,7 @@ Only use a single combined Markdown file when the user explicitly asks for inlin
 - Prefer Chinese output when the user or source material is Chinese.
 - If the user provides only a theme, guide them through setup briefly and continue with reasonable defaults.
 - If any character identity, source, or canonical setting is unclear, search the web first, summarize the likely matches with sources, and ask the user to confirm before continuing script, asset, or storyboard generation.
+- If a character cannot be found through reliable sources, or the search results are too ambiguous to identify the intended character confidently, stop and ask the user which character they mean. Do not substitute a guessed match or continue with an invented identity.
 - For character names, run a separate web search for the official English name (not only Chinese aliases or transliterations); do not invent or infer an English name without a source. If no reliable source is found, mark it as unknown and ask the user to confirm.
 - In Nana Banana character prompts, always call out the character by name explicitly; do not replace named characters with vague role words.
 - Keep IDs stable once assigned.
