@@ -19,7 +19,7 @@ When the user gives a theme, story, article, novel excerpt, or asks for a short-
 
 The skill should behave like a step-by-step production assistant:
 
-1. help the user confirm the project setup
+1. analyze the input and confirm production parameters
 2. write the script
 3. generate the asset prompt list
 4. tell the user to generate images with Nana Banana Pro or another image model
@@ -34,14 +34,34 @@ If the user asks for only one narrow task, such as a single storyboard prompt, a
 
 Treat this as the default first step when the user says something like `seedance 风云中聂风小时候的故事` or provides only a rough topic.
 
-Collect or infer:
+Determine input type:
+
+- full text: complete novel, article, or story requiring adaptation and episode segmentation
+- outline: brief concept or one-sentence premise requiring full script development
+
+Extract core elements, then collect or infer:
 
 - source material or one-sentence story premise
+- protagonist(s) and key characters
+- central conflict and narrative arc
+- setting or world-building elements
+- key plot points and emotional beats
 - visual style
 - aspect ratio
 - target duration or episode count
 - tone
 - whether the user already has images, videos, or audio references
+
+If the input is ambiguous or incomplete, ask clarifying questions only where the missing detail would materially change the result.
+
+Confirm production parameters explicitly:
+
+1. visual style: `写实 / 动画 / 水墨 / 科幻 / 复古 / 电影感 / 其他`
+2. duration: total runtime or per-episode duration and episode count
+3. target platform: aspect ratio such as `16:9` / `9:16` / `2.35:1`
+4. tone: overall emotional tone such as `史诗 / 温馨 / 悬疑 / 欢快 / 忧伤`
+
+Document these parameters once and apply them consistently across the script, asset prompts, and storyboard files.
 
 Ask only for missing parameters that materially change the result. If reasonable defaults are obvious, state them once and continue instead of blocking.
 
