@@ -107,7 +107,7 @@ Requirements:
 - use one shared style prefix across the whole project
 - make each prompt directly usable in Nana Banana Pro or another image model
 - for character assets, explicitly name the character in each prompt (do not use generic labels like "a young warrior" without the character name)
-- when available, include both Chinese name and official English name in character prompts (example: `Nie Feng (聂风)`)
+- when available, include both Chinese name and official English name in character prompts 
 - preserve recurring identity markers for characters
 - use distinct color schemes and visual markers for each character to ensure recognition
 - keep the list organized with unique IDs suitable for copy-pasting into image generators
