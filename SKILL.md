@@ -201,13 +201,21 @@ Use [references/seedance-manual.md](references/seedance-manual.md) for the corre
 
 ## Output Files
 
-When the user wants production-ready files, use these names:
+When the user wants the default post workflow, a repo-aligned project, or production-ready files, create separate Markdown files in the workspace by default. Do not collapse a multi-episode project into one combined storyboard file unless the user explicitly asks for a single-file delivery.
+
+Use these names:
 
 1. `[标题]_剧本.md`
 2. `[标题]_素材清单.md`
 3. `[标题]_E[XX]_分镜.md`
 
-If multiple episodes are delivered in one Markdown file, say so explicitly.
+For a 5-episode project, that means:
+
+- one `[标题]_剧本.md`
+- one `[标题]_素材清单.md`
+- five storyboard files: `[标题]_E01_分镜.md` through `[标题]_E05_分镜.md`
+
+Only use a single combined Markdown file when the user explicitly asks for inline output, a draft preview, or one-file delivery.
 
 ## Interaction Rules
 
