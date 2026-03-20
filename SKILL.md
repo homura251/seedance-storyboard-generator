@@ -221,6 +221,7 @@ Only use a single combined Markdown file when the user explicitly asks for inlin
 
 - Prefer Chinese output when the user or source material is Chinese.
 - If the user provides only a theme, guide them through setup briefly and continue with reasonable defaults.
+- If any character identity, source, or canonical setting is unclear, search the web first, summarize the likely matches with sources, and ask the user to confirm before continuing script, asset, or storyboard generation.
 - Keep IDs stable once assigned.
 - Make references explicit whenever using `@图片X`, `@视频X`, or `@音频X`.
 - Use explicit names instead of ambiguous pronouns when continuity matters.
