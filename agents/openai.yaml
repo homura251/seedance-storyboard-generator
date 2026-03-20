@@ -1,7 +1,7 @@
 interface:
-  display_name: "Seedance Storyboard Generator"
-  short_description: "Convert stories into Seedance 2.0 scripts and asset plans"
-  default_prompt: "Use $seedance-storyboard-generator to convert a story, novel, article, outline, or references into a four-act script, asset list, and Seedance 2.0 storyboard package."
-
-policy:
-  allow_implicit_invocation: true
+  display_name: "Seedance Storyboard"
+  short_description: "把故事改成 Seedance 2.0 分镜、素材表和续拍提示词"
+  icon_small: "./assets/seedance-small.svg"
+  icon_large: "./assets/seedance.svg"
+  brand_color: "#D9480F"
+  default_prompt: "Use $seedance-storyboard-generator to turn a story, novel, article, or outline into a Seedance 2.0 storyboard package."

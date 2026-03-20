@@ -1,6 +1,6 @@
 ---
 name: seedance-storyboard-generator
-description: Professional AI video script and storyboard generator for Seedance 2.0 platform. Use when user asks to: (1) Convert articles/stories into video scripts, (2) Generate Seedance 2.0 storyboard prompts, (3) Plan multi-episode AI video series, (4) Create character/scene/prop generation prompts for image models like Nana Banana Pro. Input can be full novels, articles, or brief story outlines. Output includes four-act script structure, episode breakdown, asset generation prompts, and Seedance 2.0 formatted storyboard scripts.
+description: "Professional AI video script and storyboard generator for Seedance 2.0 platform. Use when user asks to: (1) convert articles or stories into video scripts, (2) generate Seedance 2.0 storyboard prompts, (3) plan multi-episode AI video series, or (4) create character, scene, and prop prompts for image models like Nana Banana Pro."
 ---
 
 # Seedance Storyboard Generator

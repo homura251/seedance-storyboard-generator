@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Seedance Storyboard">
+  <rect width="64" height="64" rx="14" fill="#D9480F"/>
+  <path d="M14 18h36a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V22a4 4 0 0 1 4-4Z" fill="#FFF4E6"/>
+  <path d="M18 24h18v4H18zm0 8h28v4H18zm0 8h20v4H18z" fill="#D9480F"/>
+  <path d="m42 20 10 6-10 6z" fill="#7C2D12"/>
+</svg>
