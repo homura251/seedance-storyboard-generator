@@ -1,0 +1,7 @@
+interface:
+  display_name: "Seedance Storyboard"
+  short_description: "Generate Seedance 2.0 scripts and storyboards"
+  default_prompt: "Use $seedance-storyboard-generator to turn a story, article, outline, or references into a Seedance 2.0 script, asset list, and storyboard package."
+
+policy:
+  allow_implicit_invocation: true
