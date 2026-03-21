@@ -1,10 +1,10 @@
 interface:
   display_name: "Seedance Storyboard"
-  short_description: "先确认制作参数，再产出剧本、素材表、分镜和续拍方案"
+  short_description: "按帖子流程把主题变成完整剧本、素材表、分镜和续拍方案"
   icon_small: "./assets/seedance-small.svg"
   icon_large: "./assets/seedance.svg"
   brand_color: "#D9480F"
-  default_prompt: "Use $seedance-storyboard-generator to confirm production parameters first, then produce the script, asset list, storyboard files, and episode chaining notes."
+  default_prompt: "Use $seedance-storyboard-generator to follow the full Seedance workflow from theme to script, asset list, storyboard, and episode chaining."
 
 policy:
   allow_implicit_invocation: true
