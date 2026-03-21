@@ -107,12 +107,20 @@ Use the numbering scheme:
 | Scenes | `S01-S99` | `S01 沧州草料场·雪景` | Key locations and environments |
 | Props | `P01-P99` | `P01 长枪` | Important objects and wardrobe items |
 
-Use the upstream prompt format for every reusable asset:
+At the top of the asset list, declare one shared style prefix for the whole project:
+
+```text
+## 统一风格前缀
+
+[Style prefix]
+```
+
+Then use the upstream prompt format for every reusable asset:
 
 ```text
 ### [编号] — [名称]
 
-[Style prefix], [detailed visual description in English], [technical specs]
+[detailed visual description in English], [technical specs]
 ```
 
 Style prefix examples:
@@ -125,6 +133,7 @@ Style prefix examples:
 Requirements:
 
 - use one shared style prefix across the whole project
+- show the shared style prefix once at the beginning of `[标题]_素材清单.md`, not inside every asset prompt
 - make each prompt directly usable in Nana Banana Pro or another image model
 - for character assets, explicitly name the character in each prompt (do not use generic labels like "a young warrior" without the character name)
 - when available, include both Chinese name and official English name in character prompts 
@@ -261,7 +270,7 @@ Before finalizing:
 - ensure the time axis covers the full requested duration
 - validate camera movements are feasible and logically sequenced
 - ensure all recurring characters, scenes, props, wardrobe, and injuries remain consistent
-- ensure one shared style prefix is used across reusable asset prompts
+- ensure the asset list declares one shared style prefix at the top and does not repeat it inside every reusable asset prompt
 - ensure every Nana Banana character prompt explicitly includes the character name (and official English name when available)
 - ensure the Nana Banana asset prompts and Seedance prompt blocks can be copied into the production workflow with minimal cleanup
 
